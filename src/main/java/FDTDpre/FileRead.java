@@ -43,8 +43,7 @@ public class FileRead {
 	private static String file;
 
 	public FileRead(String fileName) {
-		this.file = "C:\\Users\\Irfan Mulla\\FDTD\\src\\FDTDpre\\"
-				+ fileName;
+		file = fileName;
 	}
 
 	public static String getFileName() {
@@ -103,9 +102,7 @@ public class FileRead {
 		int ival;
 		boolean x;
 		ival = getInt(irow, jcol);
-		x = true;
-		if (ival != 1)
-			x = false;
+		x = ival == 1;
 		return x;
 	}
 

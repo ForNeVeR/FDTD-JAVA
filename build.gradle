@@ -1,0 +1,11 @@
+apply plugin: 'java'
+apply plugin: 'application'
+
+mainClassName  = 'FDTDpre.FDTDpre'
+if (hasProperty('post')) {
+    mainClassName = 'FDTDpost.FDTDpost'
+
+    run {
+        standardInput = System.in
+    }
+}
