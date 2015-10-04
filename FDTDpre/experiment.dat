@@ -1,0 +1,174 @@
+// DATA FILE TO DESCRIBE STRUCTURE, MESH AND EXCITATION USED IN 3D FINITE-DIFFERENCE TIME-DOMAIN METHOD (FD-TD)
+// ============================================================================================================
+
+// (1) NAME STRUCTURE
+//     ==============
+Capacitor 2 pairs of plates
+
+// (2) STATE MATERIALS FOM WHICH THE DOMAIN IS COMPOSED
+//     ================================================
+// Number of distinct materials that composes the domain 
+2
+//Material Properties: the first material should be the background or most common material present:
+// First line place the name of the material
+// On the next line place the Conductivity, Relative Permittivity and Susceptibility (in that order)
+// Material 1
+Polythene
+0.0000000001        2.25         0.0
+// Material 2
+Aluminium
+35400000             1.0          0.000022
+
+// (3) SET DIMENSIONS OF DOMAIN X,Y,Z: DIMENSIONS [0 to X,0 to Y,0 to Z]
+//     =================================================================
+0.0028         0.00050        0.0014
+
+// (4) SET MESH
+//     ========
+// Cubic Yee Cell Dimensions (must divide neatly into all the dimensions)
+0.00002
+
+// (5) SET MATERIAL DISTRIBUTION
+//     =========================
+//The domain is initially assumed to be composed only with Material 1
+//The material in each cell is overwritten as each cuboidal component is introduced
+// (a) State Number of Components
+17
+// (b) State, for each component, the material index (defined in (2)) and its region [x1 to x2,y1 to y2,z1 to z2] 
+// (these dimensions should be compatable with the domain dimensions and the cell size)
+// Material          x1              x2                y1            y2              z1               z2
+//Component 1 : Plate 1
+    2                  0.0002       0.0012          0.00018        0.00020          0.0002          0.0012
+//Component 2 : Plate 2
+    2                  0.0002       0.0012          0.00030        0.00032          0.0002          0.0012
+//Component 3 : Plate 3
+    2                  0.0016       0.0026          0.00018        0.00020          0.0002          0.0012
+//Component 4 : Plate 4
+    2                  0.0016       0.0026          0.00030        0.00032          0.0002          0.0012
+//Component 5 : Extending wire from plates 1,3 in the x direction
+    2                  0.0001       0.0027          0.00018        0.00020          0.00068         0.00072
+//Component 6 : Extending wire from plate 1 in the z direction
+    2                  0.00068      0.00072         0.00018        0.00020          0.0001          0.0013
+//Component 7 : Extending wire from plate 3 in the z direction
+    2                  0.00208      0.00212         0.00018        0.00020          0.0001          0.0013
+//Component 8 : Extending wire from plates 2,4 in the x direction
+    2                  0.0001       0.0027          0.00030        0.00032          0.00068         0.00072
+//Component 9 : Extending wire from plate 2 in the z direction
+    2                  0.00068      0.00072         0.00030        0.00032          0.0001          0.0013
+//Component 10: Extending wire from plate 4 in the z direction
+    2                  0.00208      0.00212         0.00030        0.00032          0.0001          0.0013
+//Component 11: Connecting wire between 5 and 8, lower side
+    1                  0.00008      0.00012         0.00020        0.00030          0.00068         0.00072
+//Component 12: Connecting wire between 5 and 8, upper side
+    1                  0.00268      0.00272         0.00020        0.00030          0.00068         0.00072
+//Component 13: Connecting wire between 6 and 9, lower side
+    1                  0.00068      0.00072         0.00020        0.00030          0.00008         0.00012
+//Component 14: Connecting wire between 6 and 9, upper side
+    1                  0.00068      0.00072         0.00020        0.00030          0.00128         0.00132          
+//Component 15: Connecting wire between 7 and 10, lower side
+    1                  0.00208      0.00212         0.00020        0.00030          0.00008         0.00012
+//Component 16: Connecting wire between 7 and 10, upper side
+    1                  0.00208      0.00212         0.00020        0.00030          0.00128         0.00132          
+//Component 17: Conducting Channel
+    2                  0.00068      0.00072         0.00018        0.00032          0.00068         0.00072   
+
+
+// (6) SET DURATION OF SIMULATION  (time in seconds) ( physical time, not computation time)
+//     ==========================
+    0.00000000005
+
+// (7) SET EXCITATION ! State directional voltage on each component 
+//     ============== (Voltage Source assumed uniform (over a component) and to be time-invariant. 0.0 values are ignored.)
+// Component                   Ex              Ey          Ez
+         1                     0.0             0.0         0.0
+         2                     0.0             0.0         0.0
+         3                     0.0             0.0         0.0
+         4                     0.0             0.0         0.0
+         5                     0.0             0.0         0.0
+         6                     0.0             0.0         0.0
+         7                     0.0             0.0         0.0
+         8                     0.0             0.0         0.0
+         9                     0.0             0.0         0.0
+        10                     0.0             0.0         0.0
+        11                     0.0          1000.0         0.0
+        12                     0.0          1000.0         0.0
+        13                     0.0          1000.0         0.0
+        14                     0.0          1000.0         0.0
+        15                     0.0          1000.0         0.0
+        16                     0.0          1000.0         0.0
+        17                     0.0             0.0         0.0
+
+// (8) SET TIMINGS ! State time at which components "appear" and "disappear"
+//     ============== 
+// Component                   time
+         1                     0.0 				1.0     
+         2                     0.0 				1.0
+         3                     0.0     				1.0
+         4                     0.0   				1.0
+         5                     0.0     				1.0
+         6                     0.0    				1.0
+         7                     0.0  				1.0
+         8                     0.0 				1.0
+         9                     0.0				1,0
+        10                     0.0				1.0
+        11                     0.0    				1.0
+        12                     0.0  				1.0
+        13                     0.0 				0.00000000002
+        14                     0.0				0.00000000002
+        15                     0.0				0.00000000002
+        16                     0.0				0.00000000002
+        17                     0.00000000003			1.0
+//
+//
+//
+// OUTPUT CONTROL
+// ==============
+
+// (1) Planes of E - fields
+
+// (a) Set maximum number of time steps that need to be recorded
+   1000
+   
+// (b) Voltage probes: PD between ppoints p and q
+//	Set Number
+	12
+//	Set name and p coordinate and q coordinates
+	source
+	0.0001	0.0002	0.0007	0.0001	0.0003	0.0007
+	wire
+	0.00015	0.0002	0.0007	0.00015	0.0003	0.0007
+	disch
+	0.0007	0.0002	0.0007	0.0007	0.0003	0.0007
+	fuse_y
+	0.0007	0.0002	0.0014	0.0007	0.0003	0.0014
+	capcents
+	0.0021	0.0002	0.0007	0.0021	0.0003	0.0007
+	fuse_x
+	0.0012	0.00019	0.0007	0.0016	0.00019	0.0007
+	side1_y
+	0.0012	0.0002	0.0004	0.0012	0.0003	0.0004
+	side2_y
+	0.0016	0.0002	0.0004	0.0016	0.0003	0.0004
+	side_x
+	0.0012	0.0002	0.0004	0.0016	0.0002	0.0004
+	corn1_y
+	0.0012	0.0002	0.0002	0.0012	0.0003	0.0002
+	corn2_y
+	0.0016	0.0002	0.0002	0.0016	0.0003	0.0002
+	corn_x
+	0.0012	0.0002	0.0002	0.0016	0.0002	0.0002
+//   
+// 
+// (c) Set Cross sectional planes where the E field is plotted
+// Set Number
+   3
+// Set Plane (1:x-y, 2:x-z, or 3:y-z)	position of slice	Record (1:Ex, 2:Ey, 3:Ez; 4:E)	
+   1					0.0007			4
+   2					0.00025			4
+   3					0.0007			4
+
+
+
+
+
+
